@@ -1,0 +1,41 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# other
+/.aws
+/.azure
+/.cache
+/.config
+/.docker
+/.dotnet
+/.npm
+/.volta
+/.vscode-server
+/.yarn
+/.motd_shown
+/.profile
+/.sudo_as_admin_successful
+/.viminfo
+/.wget-hsts
+/.yarnrc
+
+# dependencies
+/battle-vision/node_modules
+/battle-vision/.pnp
+/battle-vision/.pnp.js
+
+# testing
+/battle-vision/coverage
+
+# production
+/battle-vision/build
+
+# misc
+/battle-vision/.DS_Store
+/battle-vision/.env.local
+/battle-vision/.env.development.local
+/battle-vision/.env.test.local
+/battle-vision/.env.production.local
+
+/battle-vision/npm-debug.log*
+/battle-vision/yarn-debug.log*
+/battle-vision/yarn-error.log*
