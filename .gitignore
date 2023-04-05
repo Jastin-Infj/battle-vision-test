@@ -11,12 +11,15 @@
 /.volta
 /.vscode-server
 /.yarn
-/.motd_shown
-/.profile
-/.sudo_as_admin_successful
-/.viminfo
-/.wget-hsts
-/.yarnrc
+
+.motd_shown
+.profile
+.sudo_as_admin_successful
+.viminfo
+.wget-hsts
+.yarnrc
+.lesshst
+.gitconfig
 
 # dependencies
 /battle-vision/node_modules
