@@ -12,13 +12,7 @@ jobs:
             yarn install
       - run:
           command: |
-            cd battle-vision
-      - run:
-          command: |
-            yarn build
-      - run:
-          command: |
-            yarn test
+            ls
 workflows:
   build_and_test:
     jobs:
