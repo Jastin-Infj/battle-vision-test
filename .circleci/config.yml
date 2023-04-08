@@ -6,7 +6,7 @@ jobs:
     working_directory: ~/battle-vision/battle-vision
     steps:
       - checkout
-        path: ~/battle-vision
+          path: ~/battle-vision
       - run:
           command: |
             yarn install
