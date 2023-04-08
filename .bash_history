@@ -212,3 +212,56 @@ git add .
 git commit -m "[clean] Circle CI related files"
 git push origin pro
 code .
+ls
+code .
+ls -a
+git add .
+git commit -m "[fix] circleCI.yml"
+git branch
+git switch -c CIsetting
+git branch
+git switch -c CI
+git push origin CI
+code .
+git add .
+git commit -m "[fix] not found manifest ver18.15.0 -> 14"
+git push origin CI
+code .
+sudo chown -R usagimi:usagimi .circleci
+git add .
+git commit -m "[add] .circleci chown -R" 
+git add .
+git commit -m "[add] .circleci chown -R"
+git push origin CI
+code .
+git add .
+git commit -m "[fix] workdirectory githubTree"
+git push origin CI
+suto apt-get tree
+sudo apt-get tree
+sudo apt-get -i tree
+code .
+apt-get update
+apt-get install tree
+sudo apt-get install ree
+sudo apt-get install tree
+tree -v
+sudo apt-get install tree
+which tree
+sudo add-apt-repository "deb http://archive.ubuntu.com/ubuntu $(lsb_release -sc) main universe restricted multiverse"
+sudo apt-get update
+sudo apt-get install tree
+which tree
+tree
+node -
+node -v
+code .
+git add .
+git commit -m "[fix] .git file derectory Set"
+git push origin CI
+code .
+docker-compose ps -a
+docker images ps
+docker images ps -a
+docker images ls -a
+docker-compose ps -a

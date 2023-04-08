@@ -3,6 +3,7 @@ services:
   db:
     image: Django
   web:
+    image: react
     build: .
     volumes:
       - .:/usr/src/app

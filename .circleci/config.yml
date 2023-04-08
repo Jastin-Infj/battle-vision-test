@@ -3,15 +3,16 @@ jobs:
   build:
     docker:
       - image: circleci/node:14
-    working_directory: .
+    working_directory: ~/battle-vision/battle-vision
     steps:
       - checkout
-      - run:
-          command: |
-            cd battle-vision
+        path: ~/battle-vision
       - run:
           command: |
             yarn install
+      - run:
+          command: |
+            cd battle-vision
       - run:
           command: |
             yarn build
