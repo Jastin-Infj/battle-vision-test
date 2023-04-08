@@ -12,7 +12,10 @@ jobs:
             yarn install
       - run:
           command: |
-            ls
+            yarn build
+      - run:
+          command: |
+            yarn test
 workflows:
   build_and_test:
     jobs:
