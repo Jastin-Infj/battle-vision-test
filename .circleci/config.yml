@@ -1,0 +1,22 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: circleci/node:14
+    working_directory: ~/battle-vision/battle-vision
+    steps:
+      - checkout:
+          path: ~/battle-vision
+      - run:
+          command: |
+            yarn install
+      - run:
+          command: |
+            yarn build
+      - run:
+          command: |
+            yarn test
+workflows:
+  build_and_test:
+    jobs:
+      - build
