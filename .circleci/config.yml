@@ -5,7 +5,7 @@ jobs:
       - image: circleci/node:14
     working_directory: ~/battle-vision/battle-vision
     steps:
-      - checkout
+      - checkout:
           path: ~/battle-vision
       - run:
           command: |
