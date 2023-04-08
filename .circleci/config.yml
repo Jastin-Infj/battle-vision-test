@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/node:14
-    working_directory: ./battle-vision
+    working_directory: /usr/src/app
     steps:
       - checkout
       - run:
