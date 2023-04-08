@@ -24,9 +24,11 @@ Battle Vision is a powerful platform for Pokémon Trainers to easily analyze the
 - HTML
 - Sass
 - Typescript  
-**ライブラリおよびフレームワーク等** 
+
+**ライブラリおよびフレームワーク等**  
 - React(メイン)  
-**メインフレームワーク**
+
+**メインフレームワーク**  
 - Next.js  
 
 **採用理由**  
