@@ -1,14 +1,21 @@
-version: 2
+version: 2.1
 jobs:
-    test_frontend:
-        docker:
-          - image: circleci/node:18.15.0
+  build:
+    docker:
+      - image: circleci/node:18.15.0
+    working_directory: ./battle-vision
     steps:
-        - checkout
-        - run: yarn install
-        - run: yarn start
+      - checkout
+      - run:
+          command: |
+            yarn install
+      - run:
+          command: |
+            yarn build
+      - run:
+          command: |
+            yarn test
 workflows:
-    version: 2
-    run_test:
-        jobs:
-            - test_frontend
+  build_and_test:
+    jobs:
+      - build
