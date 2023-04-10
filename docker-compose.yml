@@ -3,8 +3,10 @@ services:
   db:
     image: Django
   web:
-    image: react
-    build: .
+    image: react-app
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
       - .:/usr/src/app
     ports:

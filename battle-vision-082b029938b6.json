@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "battle-vision",
+  "private_key_id": "082b029938b6586cd3f143e1a01fc0f6e7c8b9a1",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEugIBADANBgkqhkiG9w0BAQEFAASCBKQwggSgAgEAAoIBAQCgb1L4JJF8b2yB\nM1yy3x04HRHZkCGTbMhYVQwXq0TwdW0v8aYDNm2ZhCzr5pv1w9Qzw2fd5uZ8qk71\n3aewOSsNLfDaDbu3NPtb2u6nfR+a3ZjZFDIewbEzfgw3RJsJrb3S03cv3DcwLNb3\ns3MVW7k7mpQa9AWCT/WrkfQAJGhxGEm7uIrjtfQrS+U1FqAsKGFhcP/Q6APn5Km/\n6jQypcyUKuVXHP6pC1s+fmw7F37yBSQqgc3MfgPS5NBmSmBeoQgleo5TEQW4XaDu\n8g9811WAxWSf/cGVupOzp7OUAEDH2dohPPpkMqC0Wgx5IzW0utdGA14O/owWP8PH\npq/qavCVAgMBAAECgf9RJ/9Qhy8RQ0wgD1tVIIgnWo0tATv614yBIoR7dKfq+3vA\nRP01otLOVY5jxsQeDnHJvY9NMQBnD7/hn76z5jdg81xi8Y+DncmJLbaMAz95l586\nMH0qEdERuzFyw8Gpo7nibBZen4dLV2Nm6d/NbhjFjexdthMTWF9t6ucDK2epzVJQ\ngJOzIa4dLYmVggGZS+2hpf3tY5nbydcC9w59y96WEOOQeiZ2Wzb33Gaz6BBdxR6S\nTfM8erI+XXXs7fF3Z3sr7FKd1f3+kv3sH4kLfn1xDvnD1QN0EFgIRNd4llenHAa3\nQ7k9JS2e5RR1P9zLnZBgIqM2BnvJhpAfW26zSMMCgYEA0nivCoJ3xAJ66YvGLxYO\nI26z2BgZJBG+n1Nlib5jMeCcNMGLn7tGqiljuPaiychEJByVPT37OgJJvzMVEuh3\nneGSznelUcUtGYTjFYeo60OxUNRbtkd89nNlRQgpoFuuFFZPsgWlG9m15iJXS1+h\nldQwB9dfHWAjiFnwLRJuR38CgYEAwyPBj8uUavqkNHjK07earsUew738SRuOa68g\ns2+b1j0TL9UXXwxldCXCADztwXkn0uaJriDvpcqN0GDkgwq50+BDrvm/gOM+ZNOX\ndip/ZWxtMskMPiOV+/LwpG9Qkhw0UIQsqTo9nwQCpCitoRnWUkP25NpjvifClRTp\nzNyAMesCgYBvvmlY0BocNCDj3DT1jOUmxMCxS2IVt2IYnyN6tV1e/tyQWe3yeXC0\nKVNrwW5+aVhcP9ywbjby/oH/BHT82/WeGkRiYD2io2glc1tJdAQoHIGI46ZpqZzc\nEDpFI2dOXz6WR5j6cGrP1Y/wxmzIdNaKgOSbVSqHoyJaYz3UAEQSqwKBgHb4kcYt\nhCtE7F/hVSeHRRNQstT8O5gG6OnWN8WuQgB38/6xmDImyKPrcT/b5ciTKSh3zXEQ\nO4uE1rk4mZkbLPh0Pk+rjIn0AdJO/oTYnBsl492WnZQ09fhJwVU/WIv8DhkYvHHg\nRDlypHmZI2KY8gXt0dTtIOqKKyPhQDnaJX5JAoGAVn4boUlvkhpT0YTI/MTJPe0m\nLgU7aNM6KWVDCa0yFPQXqwt27eV9mtBKIzEFNUp4jKy682TJxHnLYv4CkHm6a4GU\nc1kjhROHH22p+ncNhDz5OKG7l7BJ1+Ksvo9MFYpGlcpO5ark+aP4D8H3NrdKJlby\nUsorJdt3CUVzVPEyJ+A=\n-----END PRIVATE KEY-----\n",
+  "client_email": "battle-vision-service@battle-vision.iam.gserviceaccount.com",
+  "client_id": "109355500742136549574",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/battle-vision-service%40battle-vision.iam.gserviceaccount.com"
+}

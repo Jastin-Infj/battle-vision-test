@@ -47,6 +47,8 @@ React で幅広く案件を取れるようにするため。<br>
 
 **データベース**  
 - GCP  
+ - Artifact Registry  
+ - Kubernetes  
 
 **採用理由**  
 現在、主流がまだAWSに上がるため、別のチャレンジとしてGCPを選択。<br>
