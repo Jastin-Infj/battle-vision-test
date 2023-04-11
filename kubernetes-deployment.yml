@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: battle-vision-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: battle-vision
+  template:
+    metadata:
+      labels:
+        app: battle-vision
+    spec:
+      containers:
+      - name: react-app
+        image: us-central1-docker.pkg.dev/battle-vision/battle-vision-app/react-app
+        ports:
+        - containerPort: 8000
+      restartPolicy: Always
