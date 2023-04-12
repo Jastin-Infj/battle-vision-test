@@ -4,7 +4,7 @@ on:
     branches:
       - none
     tags:
-      - none
+      - 'v*'
   pull_request:
     branches: none
   workflow_dispatch:
@@ -20,12 +20,10 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Generate tags test
-      uses: rickstaa/action-create-tag@v1.6.1
-      id: docker_tags_ganerate
+      uses: docker/metadata-action@v4
+      id: meta
       with:
-        tag: "latest"
-        tag_exists_error: false
-        message: "Latest release"
+        images: battle-vision/react-app
     
     - name: Setup Docker Buildx (Use docker "build") OK
       id: buildx
@@ -91,4 +89,5 @@ jobs:
         file: ./Dockerfile
         push: true
         provenance: false
-        tags: battle-vision:${{ steps.docker_tags_ganerate.outputs.tag_exists }}
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
