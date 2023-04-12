@@ -3,15 +3,12 @@ on:
   push:
     branches:
       - main
-  
   workflow_dispatch:
 
 jobs:
   docker-build:
-
     runs-on: ubuntu-latest
-
-    steps: 
+    steps:
     - name: Checkout code
       uses: actions/checkout@v3
 
@@ -30,6 +27,9 @@ jobs:
     - name: Start app
       run:  |
         yarn start
+      working-directory: .
+      env:
+        ENVIRONMENT: production
       with:
         context: .
         file: docker-compose.yml
