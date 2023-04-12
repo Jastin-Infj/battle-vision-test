@@ -11,6 +11,7 @@ jobs:
       image: node:18.15.0-alpine3.16
 
     steps:
+    # github pull # ~/
     - uses: actions/checkout@v3
 
     - name: Ubuntu file ls
@@ -24,9 +25,15 @@ jobs:
     - name: npm version OK
       run: |
         npm -v
+
     - name: npx version OK
       run: |
         npx -v
+
     - name: node version OK
       run: |
         node -v
+
+    - name: yarn version test
+      run: |
+        yarn --version
