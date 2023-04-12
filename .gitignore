@@ -3,6 +3,7 @@
 # dependencies
 /node_modules
 battle-vision*.json
+.gitconfig
 .pnp
 .pnp.js
 
