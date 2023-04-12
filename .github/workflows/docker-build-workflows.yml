@@ -8,31 +8,9 @@ on:
 jobs:
   docker-build:
     runs-on: ubuntu-latest
+    container:
+      image: node:18.15.0-alpine3.16
+
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
-
-    - name: Install dependencies
-      run:  |
-        yarn install
-
-    - name: Test ls
-      run:  |
-        ls
-        node scripts/setup-npm-version.js
-
-    - name: Build and push Docker image
-      uses: docker/build-push-action@v3
-      with:
-        context: /usr/src/app
-        file: docker-compose.yml
-        provenance: false
-        push: true
-        tags: battle-vision:latest
-    
-    - name: Start app
-      run:  |
-        yarn start
-      working-directory: /usr/src/app
-      env:
-        ENVIRONMENT: production
+    - name: npm version test
+      run: npm -v
