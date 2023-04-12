@@ -54,7 +54,7 @@ jobs:
 
     - name: docker version test
       run: |
-        docker --v
+        docker -v
     
     - name: docker-compose version test
       run: |
