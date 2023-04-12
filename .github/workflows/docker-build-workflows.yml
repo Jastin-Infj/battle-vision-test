@@ -23,6 +23,12 @@ jobs:
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v3
+      with:
+        context: .
+        file: docker-compose.yml
+        provenance: false
+        push: true
+        tags: battle-vision:latest
     
     - name: Start app
       run:  |
@@ -30,9 +36,3 @@ jobs:
       working-directory: .
       env:
         ENVIRONMENT: production
-      with:
-        context: .
-        file: docker-compose.yml
-        provenance: false
-        push: true
-        tags: battle-vision:latest
