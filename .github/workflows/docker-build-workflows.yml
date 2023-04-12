@@ -12,11 +12,20 @@ jobs:
 
     steps:
     - name: Github checkout OK
-    - uses: actions/checkout@v3
+      uses: actions/checkout@v3
     
     - name: Setup Docker Buildx (Use docker "build") test
       id: buildx
       uses: docker/setup-buildx-action@v2
+
+    - name: Cache Docker Build Cache test
+      uses: actions/cache@v3
+      with:
+        path: /tmp/.buildx-cache
+        key: docker-build-cache-${{ github.ref }}-${{ github.sha }}
+        restore-keys: |
+          docker-build-cache-${{ github.ref }}
+          docker-build-cache
 
     - name: Ubuntu file ls OK
       run: |
