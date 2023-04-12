@@ -1,8 +1,6 @@
 version: '3'
 services:
-  db:
-    image: Django
-  web:
+  app:
     image: react-app
     build:
       context: .
