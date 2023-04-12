@@ -34,6 +34,14 @@ jobs:
       run: |
         node -v
 
-    - name: yarn version test
+    - name: yarn version OK
       run: |
         yarn --version
+
+    - name: React intall test
+      run: |
+        yarn install
+    
+    - name: React start test
+      run: |
+        yarn start
