@@ -1,16 +1,32 @@
 name: Build and Push Docker Compose
 on:
   push:
-    branches:
-      - main
+
   workflow_dispatch:
 
 jobs:
   docker-build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     container:
       image: node:18.15.0-alpine3.16
 
     steps:
-    - name: npm version test
-      run: npm -v
+    - uses: actions/checkout@v3
+
+    - name: Ubuntu file ls
+      run: |
+        ls -a
+
+    - name: Ubuntu file owner OK
+      run: |
+        ls -al
+
+    - name: npm version OK
+      run: |
+        npm -v
+    - name: npx version OK
+      run: |
+        npx -v
+    - name: node version OK
+      run: |
+        node -v
