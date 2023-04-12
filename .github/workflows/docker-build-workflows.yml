@@ -52,6 +52,14 @@ jobs:
       run: |
         yarn --version
 
+    - name: docker version test
+      run: |
+        docker --v
+    
+    - name: docker-compose version test
+      run: |
+        docker-compose -v
+
     - name: React intall OK
       run: |
         yarn install
