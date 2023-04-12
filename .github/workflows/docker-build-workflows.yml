@@ -11,10 +11,23 @@ jobs:
       image: node:18.15.0-alpine3.16
 
     steps:
-    # github pull # ~/
+    - name: Github checkout OK
     - uses: actions/checkout@v3
 
-    - name: Ubuntu file ls
+    - name: Cache Docker Build Cache test
+    - uses: actions/cache@v3
+      with:
+        path: /tmp/.buildx-cache
+        key: docker-build-cache-${{ github.ref }}-${{ github.sha }}
+        restore-keys: |
+          docker-build-cache-${{ github.ref }}
+          docker-build-cache-
+    
+    - name: Setup Docker Buildx (Use docker "build") test
+      id: buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Ubuntu file ls OK
       run: |
         ls -a
 
@@ -38,10 +51,13 @@ jobs:
       run: |
         yarn --version
 
-    - name: React intall test
+    - name: React intall OK
       run: |
         yarn install
-    
-    - name: React start test
-      run: |
-        yarn start
+
+    - name: Docker Build and Push -> image test
+      uses: docker/build-push-action@v3
+      with: 
+        context: .
+        file: ./Dockerfile
+        push: true
