@@ -27,8 +27,9 @@ jobs:
 
     - name: Setup Docker
       run: |
-        sudo apt-get update
-        sudo apt-get -y install docker.io
+        apt-get update
+        apt-get -y install docker.io
+      uesr: root
     
     - name: Setup Docker Buildx (Use docker "build") OK
       id: buildx
