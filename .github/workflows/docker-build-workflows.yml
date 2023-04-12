@@ -17,14 +17,14 @@ jobs:
         yarn install
     
     - name: Set up Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v3
       with:
-        node-version: '14.x'
+        node-version: '18.x'
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v3
       with:
-        context: .
+        context: /usr/src/app
         file: docker-compose.yml
         provenance: false
         push: true
@@ -33,6 +33,6 @@ jobs:
     - name: Start app
       run:  |
         yarn start
-      working-directory: .
+      working-directory: /usr/src/app
       env:
         ENVIRONMENT: production
