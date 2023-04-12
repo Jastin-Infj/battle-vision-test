@@ -12,16 +12,27 @@ jobs:
     runs-on: ubuntu-latest
 
     steps: 
-    # github から image 取得
     - name: Checkout code
       uses: actions/checkout@v3
-    # docker-compose.yml を元に push 
+
+    - name: Install dependencies
+      run:  |
+        yarn install
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14.x'
+
     - name: Build and push Docker image
       uses: docker/build-push-action@v3
+    
+    - name: Start app
+      run:  |
+        yarn start
       with:
         context: .
         file: docker-compose.yml
-        # GCP Container Registry 未対応なため
         provenance: false
         push: true
         tags: battle-vision:latest
