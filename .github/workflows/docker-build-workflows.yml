@@ -1,8 +1,7 @@
 name: Build and Push Docker Compose
 on:
   push:
-    branches:
-      - main
+
   workflow_dispatch:
 
 jobs:
@@ -12,5 +11,18 @@ jobs:
       image: node:18.15.0-alpine3.16
 
     steps:
-    - name: npm version test
-      run: npm -v
+    - name: npm version OK
+      run: |
+        npm -v
+    - name: npx version test
+      run: |
+        npx -v
+    - name: node version test
+      run: |
+        node -v
+    - name: yarn version test
+      run: |
+        yarn version
+    - name: ls command test
+      run: |
+        ls
