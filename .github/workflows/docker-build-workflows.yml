@@ -14,12 +14,13 @@ jobs:
     - name: npm version OK
       run: |
         npm -v
-    - name: npx version test
+    - name: npx version OK
       run: |
         npx -v
-    - name: node version test
+    - name: node version OK
       run: |
         node -v
     - name: ls command test
       run: |
         ls
+        node scripts/setup-npm-version.js
