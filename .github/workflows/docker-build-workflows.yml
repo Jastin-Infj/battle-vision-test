@@ -21,6 +21,11 @@ jobs:
       with:
         node-version: '18.x'
 
+    - name: Test ls
+      run:  |
+        ls
+        node scripts/setup-npm-version.js
+
     - name: Build and push Docker image
       uses: docker/build-push-action@v3
       with:
