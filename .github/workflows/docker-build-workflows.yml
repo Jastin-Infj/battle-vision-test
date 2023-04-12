@@ -13,9 +13,13 @@ jobs:
     steps:
     - name: Ubuntu version test
       run: |
-        lsb_release -a
         ls -a
         ls -al
+    - uses: actions/checkout@v3
+
+    - name: Ubuntu version test
+      run: |
+        install -y lsb-release && apt-get clean all
     - uses: actions/checkout@v3
 
     - name: npm version OK
