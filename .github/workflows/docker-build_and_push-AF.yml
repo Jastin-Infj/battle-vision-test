@@ -1,16 +1,16 @@
 name: docker-build_and_push-AF (called workflow)
 on:
   push:
-  branches:
-    - none
-  tags:
-    - 'v*'
+    branches:
+      - none
+    tags:
+      - 'v*'
   pull_request:
-  branches: none
+    branches: none
   workflow_dispatch:
 
   workflow_call:
-    dockerImageInfo:
+    inputs:
       DOCKER_PUSH_IMAGE:
         descirption: react-app
         type: string
@@ -27,7 +27,7 @@ jobs:
       REPO_PROJECT_ID: battle-vision
       ARTIFACT_REPO_NAME: battle-vision-ar
       ARTIFACT_REPO_LOCATION: us-central1
-      # ARTIFACT_REPO_URL: ${ARTIFACT_REPO_LOCATION}.pkg.dev/$REPO_PROJECT_ID/$ARTIFACT_REPO_NAME/${{ dockerImageInfo.DOCKER_PUSH_IMAGE }}:${{ dockerImageInfo.DOCKER_PUSH_TAG }}
+      # ARTIFACT_REPO_URL: ${ARTIFACT_REPO_LOCATION}.pkg.dev/$REPO_PROJECT_ID/$ARTIFACT_REPO_NAME/${{ inputs.DOCKER_PUSH_IMAGE }}:${{ inputs.DOCKER_PUSH_TAG }}
 
     steps:
     - 
@@ -37,7 +37,7 @@ jobs:
     - name: Get Docker push tag OK
       id: get_docker_image_tag
       run: |
-        echo  "ARTIFACT_REPO_URL=${ARTIFACT_REPO_LOCATION}.pkg.dev/$REPO_PROJECT_ID/$ARTIFACT_REPO_NAME/${{ dockerImageInfo.DOCKER_PUSH_IMAGE }}:${{ dockerImageInfo.DOCKER_PUSH_TAG }}" >> $GITHUB_OUTPUT
+        echo  "ARTIFACT_REPO_URL=${ARTIFACT_REPO_LOCATION}.pkg.dev/$REPO_PROJECT_ID/$ARTIFACT_REPO_NAME/${{ inputs.DOCKER_PUSH_IMAGE }}:${{ inputs.DOCKER_PUSH_TAG }}" >> $GITHUB_OUTPUT
 
     - name: Setup Google Cloud test
       uses: google-github-actions/setup-gcloud@master
