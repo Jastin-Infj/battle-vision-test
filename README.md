@@ -44,6 +44,7 @@ React で幅広く案件を取れるようにするため。<br>
 
 **CI/CD**  
 - CircleCI  
+- GithubActions  
 
 **データベース**  
 - GCP  
