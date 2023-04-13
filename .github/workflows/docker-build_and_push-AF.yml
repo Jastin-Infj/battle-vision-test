@@ -1,23 +1,16 @@
-name: docker-build
-run-name: ${{ github.actor }} GitHub Actions
-on:
-  push:
-    branches:
-      - none
-    tags:
-      - 'v*'
-  pull_request:
-    branches: none
-  workflow_dispatch:
+name: docker-build_and_push-AF (called workflow)
+on: workflow_dispatch
 
 jobs:
   docker-build-push:
     runs-on: ubuntu-22.04
     env:
-      DOCKER_PUSH_REPOSITORY: battle-vision
       DOCKER_PUSH_IMAGE: react-app
       DOCKER_PUSH_TAG: latest
-      # DOCKER_PUSH_URL: ghcr.io/jastin-infj/$DOCKER_PUSH_REPOSITORY/$DOCKER_PUSH_IMAGE:$DOCKER_PUSH_TAG
+      REPO_PROJECT_ID: battle-vision
+      ARTIFACT_REPO_NAME: battle-vision-ar
+      ARTIFACT_REPO_LOCATION: us-central1
+      # ARTIFACT_REPO_URL: ${ARTIFACT_REPO_LOCATION}.pkg.dev/$REPO_PROJECT_ID/$ARTIFACT_REPO_NAME/$DOCKER_PUSH_IMAGE:$DOCKER_PUSH_TAG
 
     steps:
     - 
@@ -27,7 +20,21 @@ jobs:
     - name: Get Docker push tag OK
       id: get_docker_image_tag
       run: |
-        echo  "DOCKER_PUSH_URL=ghcr.io/jastin-infj/$DOCKER_PUSH_REPOSITORY/$DOCKER_PUSH_IMAGE:$DOCKER_PUSH_TAG" >> $GITHUB_OUTPUT
+        echo  "ARTIFACT_REPO_URL=ghcr.io/jastin-infj/$DOCKER_PUSH_REPOSITORY/$DOCKER_PUSH_IMAGE:$DOCKER_PUSH_TAG" >> $GITHUB_OUTPUT
+
+    - name: Setup Google Cloud test
+      uses: google-github-actions/setup-gcloud@master
+      with:
+        service_account_key: ${{ secrets.GCS_BASE64 }}
+        project_id: ${{ jobs.build-push.env.REPO_PROJECT_ID }}
+    
+    - name: Google Cloud version test
+      run: |
+        gcloud version
+    
+    - name: Cooperation docker for Artifact Registry test
+      run: |
+        gcloud auth configure-docker ${ARTIFACT_REPO_LOCATION}-docker.pkg.dev
 
     - 
       name: GitHub Container Registry Login OK
@@ -94,10 +101,10 @@ jobs:
         yarn --version
     
     -
-      name: Docker image build and push OK
+      name: Docker image build and push test
       uses: docker/build-push-action@v4
       with:
         context: .
         file: ./Dockerfile
         push: true
-        tags: "${{ steps.get_docker_image_tag.outputs.DOCKER_PUSH_URL }}"
+        tags: "${{ steps.get_docker_image_tag.outputs.ARTIFACT_REPO_URL }}"
