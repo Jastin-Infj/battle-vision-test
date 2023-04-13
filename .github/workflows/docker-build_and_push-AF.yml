@@ -1,4 +1,4 @@
-name: Docker Build and Push Artifact Registry
+name: docker-build_and_push-AF
 run-name: ${{ github.actor }} GitHub Actions
 on:
   push:
