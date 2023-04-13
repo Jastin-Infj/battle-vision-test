@@ -13,6 +13,11 @@ on:
 jobs:
   docker-build:
     runs-on: ubuntu-22.04
+    env:
+      DOCKER_PUSH_REPOSITORY: battle-vision
+      DOCKER_PUSH_IMAGE: react-app
+      DOCKER_PUSH_TAG: latest
+      DOCKER_PUSH_URL: ghcr.io/jastin-infj/$DOCKER_PUSH_REPOSITORY/$DOCKER_PUSH_IMAGE:$DOCKER_PUSH_TAG
 
     steps:
     - 
@@ -93,11 +98,6 @@ jobs:
     -
       name: Docker image build and push test
       uses: docker/build-push-action@v4
-      env:
-        DOCKER_PUSH_REPOSITORY: "battle-vision"
-        DOCKER_PUSH_IMAGE: "react-app"
-        DOCKER_PUSH_TAG: "latest"
-        DOCKER_PUSH_URL: "ghcr.io/jastin-infj/$DOCKER_PUSH_REPOSITORY/$DOCKER_PUSH_IMAGE:$DOCKER_PUSH_TAG"
       with:
         context: .
         file: ./Dockerfile
