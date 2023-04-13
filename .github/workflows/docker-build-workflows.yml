@@ -34,7 +34,7 @@ jobs:
     - name: Get Docker push tag test
       id: get_docker_image_tag
       run: |
-        echo  ::set-output name=DOCKER_PUSH_URL::ghcr.io/jastin-infj/$DOCKER_PUSH_REPOSITORY/$DOCKER_PUSH_IMAGE:$DOCKER_PUSH_TAG
+        echo  "{DOCKER_PUSH_URL}={ghcr.io/jastin-infj/$DOCKER_PUSH_REPOSITORY/$DOCKER_PUSH_IMAGE:$DOCKER_PUSH_TAG}" >> $GITHUB_OUTPUT
 
     - 
       name: GitHub Container Registry Login OK
