@@ -17,7 +17,7 @@ jobs:
       DOCKER_PUSH_REPOSITORY: battle-vision
       DOCKER_PUSH_IMAGE: react-app
       DOCKER_PUSH_TAG: latest
-      DOCKER_PUSH_URL: ghcr.io/jastin-infj/$DOCKER_PUSH_REPOSITORY/$DOCKER_PUSH_IMAGE:$DOCKER_PUSH_TAG
+      DOCKER_PUSH_URL: ghcr.io/jastin-infj/${{ env.DOCKER_PUSH_REPOSITORY }}/${{ env.DOCKER_PUSH_IMAGE }}:${{ env.DOCKER_PUSH_TAG }}
 
     steps:
     - 
@@ -102,4 +102,4 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: "$DOCKER_PUSH_URL"
+        tags: "${{ env.DOCKER_PUSH_URL }}"
