@@ -23,15 +23,8 @@ jobs:
     - 
       name: Github checkout OK
       uses: actions/checkout@v3
-
-    - 
-      name: Generate tags OK
-      uses: docker/metadata-action@v4
-      id: meta
-      with:
-        images: battle-vision/react-app
     
-    - name: Get Docker push tag test
+    - name: Get Docker push tag OK
       id: get_docker_image_tag
       run: |
         echo  "DOCKER_PUSH_URL=ghcr.io/jastin-infj/$DOCKER_PUSH_REPOSITORY/$DOCKER_PUSH_IMAGE:$DOCKER_PUSH_TAG" >> $GITHUB_OUTPUT
