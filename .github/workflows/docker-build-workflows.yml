@@ -12,7 +12,7 @@ on:
 
 jobs:
   docker-build:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     container:
       image: node:18.15.0-alpine3.16
 
