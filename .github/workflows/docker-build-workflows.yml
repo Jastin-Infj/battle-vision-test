@@ -1,4 +1,4 @@
-name: docker-build
+name: docker-build ghcr.io
 run-name: ${{ github.actor }} GitHub Actions
 on:
   push:
