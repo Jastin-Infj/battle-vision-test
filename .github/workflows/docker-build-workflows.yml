@@ -26,6 +26,10 @@ jobs:
       with:
         images: battle-vision/react-app
 
+    - name: Docker version test
+      run: |
+        docker --version
+
     - name: GitHub Container Registry Login test
       uses: docker/login-action@v2
       with:
