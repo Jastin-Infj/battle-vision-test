@@ -1,4 +1,5 @@
 name: docker-build_and_push-AF (called workflow)
+run-name: ${{ github.actor }} ${{ github.event.inputs.tag }}
 on:
   push:
     branches:
@@ -12,12 +13,10 @@ on:
   workflow_call:
     inputs:
       DOCKER_PUSH_IMAGE:
-        descirption: react-app
-        type: string
+        description: react-app
         required: true
       DOCKER_PUSH_TAG:
         description: latest
-        type: string
         required: true
 
 jobs:

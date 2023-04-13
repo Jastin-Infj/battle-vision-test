@@ -1,5 +1,5 @@
-name: docker-build ghcr.io
-run-name: ${{ github.actor }} GitHub Actions
+name: docker-build-push ghcr.io
+run-name: ${{ github.actor }} ${{ github.event.inputs.tag }}
 on:
   push:
     branches:
