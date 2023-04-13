@@ -27,7 +27,7 @@ jobs:
         images: battle-vision/react-app
 
     - 
-      name: GitHub Container Registry Login test
+      name: GitHub Container Registry Login OK
       uses: docker/login-action@v2
       with:
         registry: ghcr.io
@@ -51,6 +51,11 @@ jobs:
           docker-build-cache
 
     - 
+      name: yarn intall Using React OK
+      run: |
+        yarn install
+
+    - 
       name: Ubuntu file ls OK
       run: |
         ls -a
@@ -61,7 +66,7 @@ jobs:
         ls -al
 
     -
-      name: docker version test
+      name: docker version OK
       run: |
         docker --version
 
@@ -81,11 +86,20 @@ jobs:
         node -v
 
     - 
-      name: React intall OK
-      run: |
-        yarn install
-
-    - 
       name: yarn version OK
       run: |
         yarn --version
+    
+    -
+      name: Docker image build and push test
+      uses: docker/build-push-action@v4
+      with:
+        context: .
+        file: ./Dockerfile
+        push: true
+        tags: env=$DOCKER_PUSH_URL
+        env:
+          DOCKER_PUSH_REPOSITORY: "battle-vision"
+          DOCKER_PUSH_IMAGE: "react-app"
+          DOCKER_PUSH_TAG: "latest"
+          DOCKER_PUSH_URL: "ghcr.io/jastin-infj/$DOCKER_PUSH_REPOSITORY/$DOCKER_PUSH_IMAGE:$DOCKER_PUSH_TAG"
