@@ -17,7 +17,7 @@ jobs:
       DOCKER_PUSH_REPOSITORY: battle-vision
       DOCKER_PUSH_IMAGE: react-app
       DOCKER_PUSH_TAG: latest
-      DOCKER_PUSH_URL: ghcr.io/jastin-infj/$DOCKER_PUSH_REPOSITORY/$DOCKER_PUSH_IMAGE:$DOCKER_PUSH_TAG
+      # DOCKER_PUSH_URL: ghcr.io/jastin-infj/$DOCKER_PUSH_REPOSITORY/$DOCKER_PUSH_IMAGE:$DOCKER_PUSH_TAG
 
     steps:
     - 
@@ -30,6 +30,11 @@ jobs:
       id: meta
       with:
         images: battle-vision/react-app
+    
+    - name: Get Docker push tag test
+      id: get_docker_image_tag
+      run: |
+        echo  ::set-output name=DOCKER_PUSH_URL::ghcr.io/jastin-infj/$DOCKER_PUSH_REPOSITORY/$DOCKER_PUSH_IMAGE:$DOCKER_PUSH_TAG
 
     - 
       name: GitHub Container Registry Login OK
@@ -102,4 +107,4 @@ jobs:
         context: .
         file: ./Dockerfile
         push: true
-        tags: "${{ env.DOCKER_PUSH_URL }}"
+        tags: "${{ steps.get_docker_image_tag.outputs.DOCKER_PUSH_URL }}"
