@@ -94,7 +94,7 @@ jobs:
         yarn --version
     
     -
-      name: Docker image build and push test
+      name: Docker image build and push OK
       uses: docker/build-push-action@v4
       with:
         context: .
