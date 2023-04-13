@@ -7,7 +7,5 @@ services:
       dockerfile: Dockerfile
     volumes:
       - .:/usr/src/app
-      - /usr/local/bin/docker:/usr/bin/docker
-      - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - "8000:8000"

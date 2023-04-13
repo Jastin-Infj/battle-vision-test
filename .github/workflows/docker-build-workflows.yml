@@ -12,37 +12,35 @@ on:
 
 jobs:
   docker-build:
-    runs-on: ubuntu-latest
-    container:
-      image: node:18.15.0-alpine3.16
+    runs-on: ubuntu-20.04
 
     steps:
-    - name: Github checkout OK
+    - 
+      name: Github checkout OK
       uses: actions/checkout@v3
 
-    - name: Generate tags OK
+    - 
+      name: Generate tags OK
       uses: docker/metadata-action@v4
       id: meta
       with:
         images: battle-vision/react-app
 
-    - name: Docker version test
-      uses: docker/login-action@v2
-      run: |
-        docker --version
-
-    - name: GitHub Container Registry Login test
-      uses: docker/login-action@v2
+    - 
+      name: GitHub Container Registry Login test
+      uses: ./
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.REACT_APP }}
 
-    - name: Setup Docker Buildx (Use docker "build") OK
+    - 
+      name: Setup Docker Buildx (Use docker "build") OK
       id: buildx
       uses: docker/setup-buildx-action@v2
 
-    - name: Cache Docker Build Cache OK
+    - 
+      name: Cache Docker Build Cache OK
       uses: actions/cache@v3
       with:
         path: /tmp/.buildx-cache
@@ -52,30 +50,37 @@ jobs:
           docker-build-cache-${{ github.ref }}-${{ github.sha }}
           docker-build-cache
 
-    - name: Ubuntu file ls OK
+    - 
+      name: Ubuntu file ls OK
       run: |
         ls -a
 
-    - name: Ubuntu file owner OK
+    - 
+      name: Ubuntu file owner OK
       run: |
         ls -al
 
-    - name: npm version OK
+    - 
+      name: npm version OK
       run: |
         npm -v
 
-    - name: npx version OK
+    - 
+      name: npx version OK
       run: |
         npx -v
 
-    - name: node version OK
+    - 
+      name: node version OK
       run: |
         node -v
 
-    - name: yarn version OK
+    - 
+      name: yarn version OK
       run: |
         yarn --version
 
-    - name: React intall OK
+    - 
+      name: React intall OK
       run: |
         yarn install
