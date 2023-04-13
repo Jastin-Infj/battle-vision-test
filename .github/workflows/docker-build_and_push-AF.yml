@@ -1,14 +1,5 @@
-name: docker-build_and_push-AF
-run-name: ${{ github.actor }} GitHub Actions
-on:
-  push:
-    branches:
-      - none
-    tags:
-      - 'v*'
-  pull_request:
-    branches: none
-  workflow_dispatch:
+name: docker-build_and_push-AF (called workflow)
+on: workflow_dispatch
 
 jobs:
   docker-build-push:
