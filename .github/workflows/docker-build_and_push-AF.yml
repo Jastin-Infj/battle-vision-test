@@ -8,6 +8,7 @@ on:
       - 'v*'
   pull_request:
     branches: none
+  workflow_dispatch:
 
 jobs:
   docker-build-push:
@@ -15,7 +16,6 @@ jobs:
     env:
       DOCKER_PUSH_IMAGE: react-app
       DOCKER_PUSH_TAG: latest
-
       REPO_PROJECT_ID: battle-vision
       ARTIFACT_REPO_NAME: battle-vision-ar
       ARTIFACT_REPO_LOCATION: us-central1
