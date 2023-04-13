@@ -10,7 +10,7 @@ on:
     branches: none
 
 jobs:
-  build-push:
+  docker-build-push:
     runs-on: ubuntu-22.04
     env:
       DOCKER_PUSH_IMAGE: react-app
