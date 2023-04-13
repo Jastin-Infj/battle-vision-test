@@ -27,6 +27,7 @@ jobs:
         images: battle-vision/react-app
 
     - name: Docker version test
+      uses: docker/login-action@v2
       run: |
         docker --version
 
