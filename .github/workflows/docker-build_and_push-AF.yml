@@ -97,12 +97,13 @@ jobs:
       name: yarn version OK
       run: |
         yarn --version
+  
+    -
+      name: Docker image build test
+      run: |
+        docker build -t ${{ steps.get_docker_image_tag.outputs.ARTIFACT_REPO_URL }} .
     
     -
-      name: Docker image build and push test
-      uses: docker/build-push-action@v4
-      with:
-        context: .
-        file: ./Dockerfile
-        push: true
-        tags: "${{ steps.get_docker_image_tag.outputs.ARTIFACT_REPO_URL }}"
+      name: Docker image push test
+      run: |
+        docker push ${{ steps.get_docker_image_tag.outputs.ARTIFACT_REPO_URL }}
