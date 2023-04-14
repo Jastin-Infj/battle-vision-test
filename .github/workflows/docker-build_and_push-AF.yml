@@ -92,7 +92,8 @@ jobs:
       id: auth
       uses: google-github-actions/auth@v1
       with:
-        token_format: ${{ secrets.GCS }}
+        token_format: access_token
+        credentials_json: ${{ secrets.GCS }}
 
     -
       name: docker login test
