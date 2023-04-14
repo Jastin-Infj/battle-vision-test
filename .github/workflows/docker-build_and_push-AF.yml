@@ -88,12 +88,11 @@ jobs:
         yarn --version
     
     - 
-      name: create auth token to Google Cloud test
+      name: auth token to Google Cloud test
       id: auth
       uses: google-github-actions/auth@v1
       with:
-        credentials_json: ${{ secrets.GCS_BASE64 }}
-        token_format: access_token
+        token_format: ${{ secrets.GCS_BASE64 }}
 
     -
       name: docker login test
