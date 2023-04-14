@@ -14,11 +14,6 @@ jobs:
   docker-build-push:
     runs-on: ubuntu-22.04
     environment: develop
-    env:
-      DOCKER_PUSH_REPOSITORY: battle-vision
-      DOCKER_PUSH_IMAGE: react-app
-      DOCKER_PUSH_TAG: latest
-      # DOCKER_PUSH_URL: ghcr.io/jastin-infj/$DOCKER_PUSH_REPOSITORY/$DOCKER_PUSH_IMAGE:$DOCKER_PUSH_TAG
 
     steps:
     - 
@@ -28,7 +23,7 @@ jobs:
     - name: Get Docker push tag OK
       id: get_docker_image_tag
       run: |
-        echo  "DOCKER_PUSH_URL=ghcr.io/jastin-infj/$DOCKER_PUSH_REPOSITORY/$DOCKER_PUSH_IMAGE:$DOCKER_PUSH_TAG" >> $GITHUB_OUTPUT
+        echo  "DOCKER_PUSH_URL=${{ vars.GIT_REGISTRY_URL }}/${{ vars.GIT_ACCOUNT_LOGIN_NAME }}/${{ vars.DOCKER_PUSH_REPOSITORY }}/${{ vars.DOCKER_PUSH_IMAGE }}:${{ vars.DOCKER_PUSH_TAG }}" >> $GITHUB_OUTPUT
 
     - 
       name: GitHub Container Registry Login OK
