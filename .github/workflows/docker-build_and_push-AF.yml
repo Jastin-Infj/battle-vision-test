@@ -115,6 +115,6 @@ jobs:
         docker build -t ${{ steps.get_docker_image_tag.outputs.ARTIFACT_REPO_URL }} .
     
     -
-      name: gcloud Artifacts Registry push test
+      name: gcloud Artifacts Registry push OK
       run: |
         docker push ${{ steps.get_docker_image_tag.outputs.ARTIFACT_REPO_URL }}
