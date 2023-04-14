@@ -117,4 +117,4 @@ jobs:
     -
       name: gcloud Artifacts Registry push test
       run: |
-        gcloud artifacts docker push ${{ steps.get_docker_image_tag.outputs.ARTIFACT_REPO_URL }}
+        docker push ${{ steps.get_docker_image_tag.outputs.ARTIFACT_REPO_URL }}
