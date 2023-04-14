@@ -99,10 +99,14 @@ jobs:
         yarn --version
   
     -
-      name: Docker image build test
+      name: Docker image build OK
       run: |
         docker build -t ${{ steps.get_docker_image_tag.outputs.ARTIFACT_REPO_URL }} .
     
+    -
+      name: gcloud update test
+      run: |
+        gcloud components update 
     -
       name: Docker image push test
       run: |
