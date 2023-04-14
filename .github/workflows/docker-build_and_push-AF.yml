@@ -10,6 +10,7 @@ jobs:
   AF-build-push:
     runs-on: ubuntu-22.04
     environment: production
+
     steps:
     - 
       name: Github checkout OK
@@ -29,18 +30,6 @@ jobs:
     - name: Google Cloud version OK
       run: |
         gcloud version
-    
-    - name: Cooperation docker for Artifact Registry OK
-      run: |
-        gcloud auth configure-docker ${{ vars.ARTIFACT_REPO_LOCATION }}-docker.pkg.dev
-
-    - 
-      name: GitHub Container Registry Login OK
-      uses: docker/login-action@v2
-      with:
-        registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.REACT_APP }}
 
     - 
       name: Setup Docker Buildx (Use docker "build") OK
@@ -97,12 +86,34 @@ jobs:
       name: yarn version OK
       run: |
         yarn --version
-  
-    -
-      name: Docker image build and push test
-      uses: docker/build-push-action@v4
+    
+    - 
+      name: create auth token to Google Cloud test
+      id: 'auth'
+      uses: google-github-actions/auth@v1
       with:
-        context: .
-        file: ./Dockerfile
-        push: true
-        tags: "${{ steps.get_docker_image_tag.outputs.ARTIFACT_REPO_URL }}"
+        credentials_json: ${{ secrets.GCS_BASE64 }}
+        token_format: 'access_token'
+
+    -
+      name: docker login test
+      uses: docker/login-action@v2
+      with:
+        registry: ${{ vars.ARTIFACT_REPO_LOCATION }}-docker.pkg.dev
+        username: 'oauth2accesstoken'
+        password: '${{ steps.auth.outputs.access_token }}'
+    
+    -
+      name: "docker login" connetion to Artifact Registry test
+      run: |
+        echo '${{ steps.auth.outputs.access_token }}' | docker login -u oauth2accesstoken --password-stdin https://${{ vars.ARTIFACT_REPO_LOCATION }}-docker.pkg.dev
+
+    -
+      name: docker image build test
+      run: |
+        docker build -t ${{ steps.get_docker_image_tag.outputs.DOCKER_PUSH_URL }} .
+    
+    -
+      name: gcloud Artifact Registry push test
+      run: |
+        gcloud artifact docker push ${{ steps.get_docker_image_tag.outputs.DOCKER_PUSH_URL }}
