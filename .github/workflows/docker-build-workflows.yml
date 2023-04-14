@@ -2,18 +2,13 @@ name: docker-build-push ghcr.io
 run-name: ${{ github.actor }} ${{ github.ref }}-${{ github.sha }}
 on:
   push:
-    branches:
-      - none
     tags:
       - 'v*'
-  pull_request:
-    branches: none
 
 jobs:
   docker-build-push:
     runs-on: ubuntu-22.04
     environment: develop
-
     steps:
     - 
       name: Github checkout OK
