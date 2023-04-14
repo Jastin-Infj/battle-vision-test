@@ -8,13 +8,10 @@ on:
       - 'v*'
   pull_request:
     branches: none
-  workflow_dispatch:
 
 jobs:
   docker-build-push:
     runs-on: ubuntu-22.04
-    env:
-      CURRENT_BRANCH: AF
     environment: develop
 
     steps:
@@ -102,7 +99,7 @@ jobs:
 
     -
       name: Complate return 0 vars test
-      uses: "${{ vars.GIT_REGISTRY_URL }}/${{ vars.GIT_ACCOUNT_LOGIN_NAME }}/.github/workflows/docker-build-workflows.yml@${ CURRENT_BRANCH }"
+      uses: "${{ vars.GIT_REGISTRY_URL }}/${{ vars.GIT_ACCOUNT_LOGIN_NAME }}/.github/workflows/docker-build-workflows.yml@${{ secrets.CURRENT_BRANCH }}"
       with:
         DOCKER_PUSH_IMAGE: ${{ vars.DOCKER_PUSH_IMAGE }}
         DOCKER_PUSH_TAG: ${{ vars.DOCKER_PUSH_TAG }}
