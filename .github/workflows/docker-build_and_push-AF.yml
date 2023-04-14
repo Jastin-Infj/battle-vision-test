@@ -21,7 +21,7 @@ jobs:
         echo  "ARTIFACT_REPO_URL=${{ secrets.ARTIFACT_REPO_LOCATION }}.pkg.dev/${{ secrets.REPO_PROJECT_ID }}/${{ secrets.ARTIFACT_REPO_NAME }}/${{ vars.DOCKER_PUSH_IMAGE }}:${{ vars.DOCKER_PUSH_TAG }}" >> $GITHUB_OUTPUT
 
     - name: Setup Google Cloud test
-      uses: google-github-actions/setup-gcloud@master
+      uses: google-github-actions/setup-gcloud@v1
       with:
         service_account_key: ${{ secrets.GCS_BASE64 }}
         project_id: ${{ secrets.REPO_PROJECT_ID }}
