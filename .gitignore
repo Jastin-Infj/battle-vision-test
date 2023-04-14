@@ -2,8 +2,8 @@
 
 # dependencies
 /node_modules
-battle-vision*.json
-battle-vision*_base64*.txt
+app-battle-vision*.json
+app-battle-vision*_base64*.txt
 .gitconfig
 .pnp
 .pnp.js
