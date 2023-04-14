@@ -1,5 +1,5 @@
 name: docker-build_and_push-AF (called workflow)
-run-name: ${{ github.actor }}
+run-name: ${{ github.actor }} ${{ github.ref }}-${{ github.sha }}
 on:
   push:
     branches:
@@ -10,17 +10,8 @@ on:
     branches: none
   workflow_dispatch:
 
-  workflow_call:
-    inputs:
-      DOCKER_PUSH_IMAGE:
-        required: true
-        type: string
-      DOCKER_PUSH_TAG:
-        required: true
-        type: string
-
 jobs:
-  reusable_workflow_job:
+  AF-build-push:
     runs-on: ubuntu-22.04
     environment: production
 
@@ -31,7 +22,7 @@ jobs:
     - name: Get Docker push tag OK
       id: get_docker_image_tag
       run: |
-        echo  "ARTIFACT_REPO_URL=${{ secrets.ARTIFACT_REPO_LOCATION }}.pkg.dev/${{ secrets.REPO_PROJECT_ID }}/${{ secrets.ARTIFACT_REPO_NAME }}/${{ inputs.DOCKER_PUSH_IMAGE }}:${{ inputs.DOCKER_PUSH_TAG }}" >> $GITHUB_OUTPUT
+        echo  "ARTIFACT_REPO_URL=${{ secrets.ARTIFACT_REPO_LOCATION }}.pkg.dev/${{ secrets.REPO_PROJECT_ID }}/${{ secrets.ARTIFACT_REPO_NAME }}/${{ vars.DOCKER_PUSH_IMAGE }}:${{ vars.DOCKER_PUSH_TAG }}" >> $GITHUB_OUTPUT
 
     - name: Setup Google Cloud test
       uses: google-github-actions/setup-gcloud@master
@@ -112,7 +103,7 @@ jobs:
         yarn --version
     
     -
-      name: Docker image build and push test
+      name: Docker image build and push OK
       uses: docker/build-push-action@v4
       with:
         context: .
