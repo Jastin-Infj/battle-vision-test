@@ -94,6 +94,7 @@ jobs:
       with:
         token_format: access_token
         credentials_json: ${{ secrets.GCS }}
+        service_account: battle-vision-service@battle-vision.iam.gserviceaccount.com
 
     -
       name: docker login test
