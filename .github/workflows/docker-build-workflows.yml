@@ -1,5 +1,5 @@
 name: docker-build-push ghcr.io
-run-name: ${{ github.actor }} ${{ github.event.inputs.tag }}
+run-name: ${{ github.actor }}
 on:
   push:
     branches:
@@ -13,6 +13,7 @@ on:
 jobs:
   docker-build-push:
     runs-on: ubuntu-22.04
+    environment: develop
     env:
       DOCKER_PUSH_REPOSITORY: battle-vision
       DOCKER_PUSH_IMAGE: react-app
