@@ -18,7 +18,7 @@ jobs:
     - name: Get Docker push tag OK
       id: get_docker_image_tag
       run: |
-        echo  "ARTIFACT_REPO_URL=${{ vars.ARTIFACT_REPO_LOCATION }}.pkg.dev/${{ vars.REPO_PROJECT_ID }}/${{ vars.ARTIFACT_REPO_NAME }}/${{ vars.DOCKER_PUSH_IMAGE }}:${{ vars.DOCKER_PUSH_TAG }}" >> $GITHUB_OUTPUT
+        echo  "ARTIFACT_REPO_URL=${{ vars.ARTIFACT_REPO_LOCATION }}-docker.pkg.dev/${{ vars.REPO_PROJECT_ID }}/${{ vars.ARTIFACT_REPO_NAME }}/${{ vars.DOCKER_PUSH_IMAGE }}:${{ vars.DOCKER_PUSH_TAG }}" >> $GITHUB_OUTPUT
 
     - name: Setup Google Cloud OK
       uses: google-github-actions/setup-gcloud@v1
