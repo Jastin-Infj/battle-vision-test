@@ -10,6 +10,7 @@ jobs:
   AF-build-push:
     runs-on: ubuntu-22.04
     environment: production
+
     steps:
     - 
       name: Github checkout OK
@@ -18,29 +19,17 @@ jobs:
     - name: Get Docker push tag OK
       id: get_docker_image_tag
       run: |
-        echo  "ARTIFACT_REPO_URL=${{ secrets.ARTIFACT_REPO_LOCATION }}.pkg.dev/${{ secrets.REPO_PROJECT_ID }}/${{ secrets.ARTIFACT_REPO_NAME }}/${{ vars.DOCKER_PUSH_IMAGE }}:${{ vars.DOCKER_PUSH_TAG }}" >> $GITHUB_OUTPUT
+        echo  "ARTIFACT_REPO_URL=${{ vars.ARTIFACT_REPO_LOCATION }}-docker.pkg.dev/${{ vars.REPO_PROJECT_ID }}/${{ vars.ARTIFACT_REPO_NAME }}/${{ vars.DOCKER_PUSH_IMAGE }}:${{ vars.DOCKER_PUSH_TAG }}" >> $GITHUB_OUTPUT
 
-    - name: Setup Google Cloud test
+    - name: Setup Google Cloud OK
       uses: google-github-actions/setup-gcloud@v1
       with:
-        service_account_key: ${{ secrets.GCS_BASE64 }}
-        project_id: ${{ secrets.REPO_PROJECT_ID }}
+        service_account_key: ${{ secrets.GCS }}
+        project_id: ${{ vars.REPO_PROJECT_ID }}
     
-    - name: Google Cloud version test
+    - name: Google Cloud version OK
       run: |
         gcloud version
-    
-    - name: Cooperation docker for Artifact Registry test
-      run: |
-        gcloud auth configure-docker ${{ secrets.ARTIFACT_REPO_LOCATION }}-docker.pkg.dev
-
-    - 
-      name: GitHub Container Registry Login OK
-      uses: docker/login-action@v2
-      with:
-        registry: ghcr.io
-        username: ${{ github.actor }}
-        password: ${{ secrets.REACT_APP }}
 
     - 
       name: Setup Docker Buildx (Use docker "build") OK
@@ -98,11 +87,34 @@ jobs:
       run: |
         yarn --version
     
-    -
-      name: Docker image build and push OK
-      uses: docker/build-push-action@v4
+    - 
+      name: auth token to Google Cloud OK
+      id: auth
+      uses: google-github-actions/auth@v1
       with:
-        context: .
-        file: ./Dockerfile
-        push: true
-        tags: "${{ steps.get_docker_image_tag.outputs.ARTIFACT_REPO_URL }}"
+        token_format: access_token
+        credentials_json: ${{ secrets.GCS }}
+        service_account: ${{ secrets.GOOGLE_SERVICE_EMAIL }}
+
+    -
+      name: docker login OK
+      uses: docker/login-action@v2
+      with:
+        registry: ${{ vars.ARTIFACT_REPO_LOCATION }}-docker.pkg.dev
+        username: oauth2accesstoken
+        password: ${{ steps.auth.outputs.access_token }}
+
+    -
+      name: docker login connetion to Artifact Registry OK
+      run: |
+        echo ${{ steps.auth.outputs.access_token }} | docker login -u oauth2accesstoken --password-stdin https://${{ vars.ARTIFACT_REPO_LOCATION }}-docker.pkg.dev
+
+    -
+      name: docker image build OK
+      run: |
+        docker build -t ${{ steps.get_docker_image_tag.outputs.ARTIFACT_REPO_URL }} .
+    
+    -
+      name: gcloud Artifacts Registry push OK
+      run: |
+        docker push ${{ steps.get_docker_image_tag.outputs.ARTIFACT_REPO_URL }}
