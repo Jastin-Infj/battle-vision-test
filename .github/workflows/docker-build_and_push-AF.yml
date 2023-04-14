@@ -89,24 +89,24 @@ jobs:
     
     - 
       name: create auth token to Google Cloud test
-      id: 'auth'
+      id: auth
       uses: google-github-actions/auth@v1
       with:
         credentials_json: ${{ secrets.GCS_BASE64 }}
-        token_format: 'access_token'
+        token_format: access_token
 
     -
       name: docker login test
       uses: docker/login-action@v2
       with:
         registry: ${{ vars.ARTIFACT_REPO_LOCATION }}-docker.pkg.dev
-        username: 'oauth2accesstoken'
-        password: '${{ steps.auth.outputs.access_token }}'
+        username: oauth2accesstoken
+        password: ${{ steps.auth.outputs.access_token }}
     
     -
       name: "docker login" connetion to Artifact Registry test
       run: |
-        echo '${{ steps.auth.outputs.access_token }}' | docker login -u oauth2accesstoken --password-stdin https://${{ vars.ARTIFACT_REPO_LOCATION }}-docker.pkg.dev
+        echo ${{ steps.auth.outputs.access_token }} | docker login -u oauth2accesstoken --password-stdin https://${{ vars.ARTIFACT_REPO_LOCATION }}-docker.pkg.dev
 
     -
       name: docker image build test
