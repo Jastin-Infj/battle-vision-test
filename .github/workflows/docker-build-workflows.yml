@@ -9,13 +9,13 @@ on:
   pull_request:
     branches: none
   workflow_dispatch:
-  env:
-    CURRENT_BRANCH: AF
 
 jobs:
   docker-build-push:
     runs-on: ubuntu-22.04
     environment: develop
+    env:
+      CURRENT_BRANCH: AF
 
     steps:
     - 
