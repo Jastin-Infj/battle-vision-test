@@ -2,12 +2,8 @@ name: docker-build_and_push-AF (called workflow)
 run-name: ${{ github.actor }} ${{ github.ref }}-${{ github.sha }}
 on:
   push:
-    branches:
-      - none
     tags:
       - 'v*'
-  pull_request:
-    branches: none
   workflow_dispatch:
 
 jobs:
