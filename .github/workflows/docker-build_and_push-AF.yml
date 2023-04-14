@@ -24,7 +24,7 @@ jobs:
     - name: Setup Google Cloud OK
       uses: google-github-actions/setup-gcloud@v1
       with:
-        service_account_key: ${{ secrets.GCS_BASE64 }}
+        service_account_key: ${{ secrets.GCS }}
         project_id: ${{ vars.REPO_PROJECT_ID }}
     
     - name: Google Cloud version OK
@@ -92,7 +92,7 @@ jobs:
       id: auth
       uses: google-github-actions/auth@v1
       with:
-        token_format: ${{ secrets.GCS_BASE64 }}
+        token_format: ${{ secrets.GCS }}
 
     -
       name: docker login test
