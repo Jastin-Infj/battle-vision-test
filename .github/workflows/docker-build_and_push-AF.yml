@@ -110,11 +110,11 @@ jobs:
         echo ${{ steps.auth.outputs.access_token }} | docker login -u oauth2accesstoken --password-stdin https://${{ vars.ARTIFACT_REPO_LOCATION }}-docker.pkg.dev
 
     -
-      name: docker image build test
+      name: docker image build OK
       run: |
         docker build -t ${{ steps.get_docker_image_tag.outputs.ARTIFACT_REPO_URL }} .
     
     -
-      name: gcloud Artifact Registry push test
+      name: gcloud Artifacts Registry push test
       run: |
-        gcloud artifact docker push ${{ steps.get_docker_image_tag.outputs.ARTIFACT_REPO_URL }}
+        gcloud artifacts docker push ${{ steps.get_docker_image_tag.outputs.ARTIFACT_REPO_URL }}
