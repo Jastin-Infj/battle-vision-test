@@ -18,21 +18,21 @@ jobs:
     - name: Get Docker push tag OK
       id: get_docker_image_tag
       run: |
-        echo  "ARTIFACT_REPO_URL=${{ secrets.ARTIFACT_REPO_LOCATION }}.pkg.dev/${{ secrets.REPO_PROJECT_ID }}/${{ secrets.ARTIFACT_REPO_NAME }}/${{ vars.DOCKER_PUSH_IMAGE }}:${{ vars.DOCKER_PUSH_TAG }}" >> $GITHUB_OUTPUT
+        echo  "ARTIFACT_REPO_URL=${{ vars.ARTIFACT_REPO_LOCATION }}.pkg.dev/${{ vars.REPO_PROJECT_ID }}/${{ vars.ARTIFACT_REPO_NAME }}/${{ vars.DOCKER_PUSH_IMAGE }}:${{ vars.DOCKER_PUSH_TAG }}" >> $GITHUB_OUTPUT
 
-    - name: Setup Google Cloud test
+    - name: Setup Google Cloud OK
       uses: google-github-actions/setup-gcloud@v1
       with:
         service_account_key: ${{ secrets.GCS_BASE64 }}
-        project_id: ${{ secrets.REPO_PROJECT_ID }}
+        project_id: ${{ vars.REPO_PROJECT_ID }}
     
-    - name: Google Cloud version test
+    - name: Google Cloud version OK
       run: |
         gcloud version
     
-    - name: Cooperation docker for Artifact Registry test
+    - name: Cooperation docker for Artifact Registry OK
       run: |
-        gcloud auth configure-docker ${{ secrets.ARTIFACT_REPO_LOCATION }}-docker.pkg.dev
+        gcloud auth configure-docker ${{ vars.ARTIFACT_REPO_LOCATION }}-docker.pkg.dev
 
     - 
       name: GitHub Container Registry Login OK
@@ -99,7 +99,7 @@ jobs:
         yarn --version
     
     -
-      name: Docker image build and push OK
+      name: Docker image build and push test
       uses: docker/build-push-action@v4
       with:
         context: .
