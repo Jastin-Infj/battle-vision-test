@@ -94,7 +94,7 @@ jobs:
       with:
         token_format: access_token
         credentials_json: ${{ secrets.GCS }}
-        service_account: ${{ secrests.GOOGLE_SERVICE_EMAIL }}
+        service_account: ${{ secrets.GOOGLE_SERVICE_EMAIL }}
 
     -
       name: docker login OK
