@@ -9,25 +9,8 @@ on:
   pull_request:
     branches: none
   workflow_dispatch:
-
-  workflow_call:
-    inputs:
-      GIT_REGISTRY_URL:
-        required: true
-        type: string
-      GIT_ACCOUNT_LOGIN_NAME:
-        required: true
-        type: string
-      DOCKER_PUSH_REPOSITORY:
-        required: true
-        type: string
-      DOCKER_PUSH_IMAGE:
-        required: true
-        type: string
-      DOCKER_PUSH_TAG:
-        required: true
-        type: string
-
+  env:
+    CURRENT_BRANCH: AF
 
 jobs:
   docker-build-push:
@@ -42,7 +25,7 @@ jobs:
     - name: Get Docker push tag OK
       id: get_docker_image_tag
       run: |
-        echo  "DOCKER_PUSH_URL=${{ inputs.GIT_REGISTRY_URL }}/${{ inputs.GIT_ACCOUNT_LOGIN_NAME }}/${{ inputs.DOCKER_PUSH_REPOSITORY }}/${{ inputs.DOCKER_PUSH_IMAGE }}:${{ inputs.DOCKER_PUSH_TAG }}" >> $GITHUB_OUTPUT
+        echo  "DOCKER_PUSH_URL=${{ vars.GIT_REGISTRY_URL }}/${{ vars.GIT_ACCOUNT_LOGIN_NAME }}/${{ vars.DOCKER_PUSH_REPOSITORY }}/${{ vars.DOCKER_PUSH_IMAGE }}:${{ vars.DOCKER_PUSH_TAG }}" >> $GITHUB_OUTPUT
 
     - 
       name: GitHub Container Registry Login OK
@@ -116,3 +99,10 @@ jobs:
         file: ./Dockerfile
         push: true
         tags: "${{ steps.get_docker_image_tag.outputs.DOCKER_PUSH_URL }}"
+
+    -
+      name: Complate return 0 vars test
+      uses: "${{ vars.GIT_REGISTRY_URL }}/${{ vars.GIT_ACCOUNT_LOGIN_NAME }}/.github/workflows/docker-build-workflows.yml@${ CURRENT_BRANCH }"
+      with:
+        DOCKER_PUSH_IMAGE: ${{ vars.DOCKER_PUSH_IMAGE }}
+        DOCKER_PUSH_TAG: ${{ vars.DOCKER_PUSH_TAG }}

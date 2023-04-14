@@ -23,19 +23,6 @@ jobs:
   reusable_workflow_job:
     runs-on: ubuntu-22.04
     environment: production
-    env:
-      REPO_PROJECT_ID: battle-vision
-      ARTIFACT_REPO_NAME: battle-vision-ar
-      ARTIFACT_REPO_LOCATION: us-central1
-      # ARTIFACT_REPO_URL: ${ARTIFACT_REPO_LOCATION}.pkg.dev/$REPO_PROJECT_ID/$ARTIFACT_REPO_NAME/${{ github.event.inputs.DOCKER_PUSH_IMAGE }}:${{ github.event.inputs.DOCKER_PUSH_TAG }}
-
-    steps:
-    -
-      name: workflow input test
-      uses: actions/labeler@v4
-      with:
-        repo-token: ${{ secrets.envPAT }}
-        
 
     - 
       name: Github checkout OK
@@ -44,13 +31,13 @@ jobs:
     - name: Get Docker push tag OK
       id: get_docker_image_tag
       run: |
-        echo  "ARTIFACT_REPO_URL=${ARTIFACT_REPO_LOCATION}.pkg.dev/$REPO_PROJECT_ID/$ARTIFACT_REPO_NAME/${{ github.event.inputs.DOCKER_PUSH_IMAGE }}:${{ github.event.inputs.DOCKER_PUSH_TAG }}" >> $GITHUB_OUTPUT
+        echo  "ARTIFACT_REPO_URL=${{ secrets.ARTIFACT_REPO_LOCATION }}.pkg.dev/${{ secrets.REPO_PROJECT_ID }}/${{ secrets.ARTIFACT_REPO_NAME }}/${{ inputs.DOCKER_PUSH_IMAGE }}:${{ inputs.DOCKER_PUSH_TAG }}" >> $GITHUB_OUTPUT
 
     - name: Setup Google Cloud test
       uses: google-github-actions/setup-gcloud@master
       with:
         service_account_key: ${{ secrets.GCS_BASE64 }}
-        project_id: ${{ jobs.reusable_workflow_job.env.REPO_PROJECT_ID }}
+        project_id: ${{ secrets.REPO_PROJECT_ID }}
     
     - name: Google Cloud version test
       run: |
@@ -58,7 +45,7 @@ jobs:
     
     - name: Cooperation docker for Artifact Registry test
       run: |
-        gcloud auth configure-docker ${ARTIFACT_REPO_LOCATION}-docker.pkg.dev
+        gcloud auth configure-docker ${{ secrets.ARTIFACT_REPO_LOCATION }}-docker.pkg.dev
 
     - 
       name: GitHub Container Registry Login OK
