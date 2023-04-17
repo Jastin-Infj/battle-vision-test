@@ -90,14 +90,14 @@ jobs:
         yarn --version
 
     -
-      name: Docker-compose build test
+      name: Docker-compose build OK
       run: |
         docker-compose build
     
     -
       name: Create githubAction Package test
       run: |
-        docker tag ${{ vars.DOCKER_IMAGE_REPOSITORY }}:${{ vars.DOCKER_IMAGE_TAG }} ${{ steps.get_docker_image_tag.outputs.DOCKER_PUSH_URL }}
+        docker tag ${{ vars.DOCKER_PUSH_BASE_NAME }}:${{ vars.DOCKER_PUSH_BASE_TAG }} ${{ steps.get_docker_image_tag.outputs.DOCKER_PUSH_URL }}
     
     -
       name: docker images ls test
