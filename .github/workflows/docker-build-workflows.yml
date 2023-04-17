@@ -63,6 +63,11 @@ jobs:
       name: docker version OK
       run: |
         docker --version
+    
+    -
+      name: docker-compose version test
+      run: |
+        docker-compose --version
 
     - 
       name: npm version OK
