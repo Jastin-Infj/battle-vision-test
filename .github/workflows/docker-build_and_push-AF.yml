@@ -115,9 +115,14 @@ jobs:
         echo ${{ steps.auth.outputs.access_token }} | docker login -u oauth2accesstoken --password-stdin https://${{ vars.ARTIFACT_REPO_LOCATION }}-docker.pkg.dev
 
     -
-      name: docker image build OK
+      name: docker-compose build test
       run: |
-        docker build -t ${{ steps.get_docker_image_tag.outputs.ARTIFACT_REPO_URL }} .
+        docker-compose build
+    
+    -
+      name: create Artifact Registry package test
+      run: |
+        docker tag ${{ vars.DOCKER_PUSH_BASE_NAME }}:${{ vars.DOCKER_PUSH_BASE_TAG }} ${{ steps.get_docker_image_tag.outputs.ARTIFACT_REPO_URL }}
     
     -
       name: gcloud Artifacts Registry push OK

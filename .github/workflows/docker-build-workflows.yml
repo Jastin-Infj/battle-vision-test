@@ -90,12 +90,12 @@ jobs:
         yarn --version
 
     -
-      name: Docker-compose build OK
+      name: docker-compose build OK
       run: |
         docker-compose build
     
     -
-      name: Create githubAction Package OK
+      name: create githubAction Package OK
       run: |
         docker tag ${{ vars.DOCKER_PUSH_BASE_NAME }}:${{ vars.DOCKER_PUSH_BASE_TAG }} ${{ steps.get_docker_image_tag.outputs.DOCKER_PUSH_URL }}
     
@@ -105,6 +105,6 @@ jobs:
         docker images
 
     -
-      name: Docker push OK
+      name: docker push OK
       run: |
         docker push ${{ steps.get_docker_image_tag.outputs.DOCKER_PUSH_URL }}
