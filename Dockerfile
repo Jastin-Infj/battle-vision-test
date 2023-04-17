@@ -5,4 +5,8 @@ FROM node:${NODE_VERSION}-alpine${ALPINE_VERSION}
 
 WORKDIR /usr/src/app
 COPY . /usr/src/app
-EXPOSE 8000
+
+RUN yarn --frozen-lockfile && \
+    yarn build
+
+RUN ["yarn","install"]
