@@ -68,7 +68,7 @@ jobs:
         docker --version
     
     -
-      name: docker-compose version test
+      name: docker-compose version OK
       run: |
         docker-compose --version
 
