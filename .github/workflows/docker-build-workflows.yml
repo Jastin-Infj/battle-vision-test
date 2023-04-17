@@ -65,7 +65,7 @@ jobs:
         docker --version
     
     -
-      name: docker-compose version test
+      name: docker-compose version OK
       run: |
         docker-compose --version
 
@@ -88,12 +88,23 @@ jobs:
       name: yarn version OK
       run: |
         yarn --version
+
+    -
+      name: docker-compose build OK
+      run: |
+        docker-compose build
     
     -
-      name: Docker image build and push OK
-      uses: docker/build-push-action@v4
-      with:
-        context: .
-        file: ./Dockerfile
-        push: true
-        tags: "${{ steps.get_docker_image_tag.outputs.DOCKER_PUSH_URL }}"
+      name: create githubAction Package OK
+      run: |
+        docker tag ${{ vars.DOCKER_PUSH_BASE_NAME }}:${{ vars.DOCKER_PUSH_BASE_TAG }} ${{ steps.get_docker_image_tag.outputs.DOCKER_PUSH_URL }}
+    
+    -
+      name: docker images ls OK
+      run: |
+        docker images
+
+    -
+      name: docker push OK
+      run: |
+        docker push ${{ steps.get_docker_image_tag.outputs.DOCKER_PUSH_URL }}
