@@ -77,12 +77,7 @@ jobs:
       name: docker-compose build OK
       run: |
         docker-compose build
-    
-    -
-      name: create githubAction Package OK
-      run: |
-        docker tag ${{ vars.DOCKER_PUSH_BASE_NAME }}:${{ vars.DOCKER_PUSH_BASE_TAG }} ${{ steps.get_docker_image_tag.outputs.DOCKER_PUSH_URL }}
-    
+        
     -
       name: docker images ls OK
       run: |
