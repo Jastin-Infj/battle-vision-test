@@ -29,11 +29,6 @@ jobs:
         password: ${{ secrets.REACT_APP }}
 
     - 
-      name: Setup Docker Buildx (Use docker "build") OK
-      id: buildx
-      uses: docker/setup-buildx-action@v2
-
-    - 
       name: yarn intall Using React OK
       run: |
         yarn install
