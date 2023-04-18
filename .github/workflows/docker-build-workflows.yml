@@ -32,6 +32,11 @@ jobs:
       name: yarn intall Using React OK
       run: |
         yarn install
+    
+    -
+      name: yarn reinstall test 
+      run: |
+        yarn
 
     - 
       name: Ubuntu file ls OK
@@ -87,6 +92,16 @@ jobs:
       name: docker images ls OK
       run: |
         docker images
+
+    -
+      name: docker-compose up test
+      run: |
+        docker-compose up -d
+
+    -
+      name: docker container remove all test
+      run: |
+        docker rm -f `docker ps -a -q`
 
     -
       name: docker push OK
