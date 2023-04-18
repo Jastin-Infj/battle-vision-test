@@ -1,7 +1,7 @@
 version: '3'
 services:
   app:
-    image: react-app:latest
+    image: ghcr.io/jastin-infj/battle-vision/react-app:latest
     build:
       context: .
       dockerfile: Dockerfile
