@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: react-app
-        image: usagimi/react-app:latest   # Edit
+        image: us-central1-docker.pkg.dev/app-battle-vision/app-battle-vision-ar/react-app:latest   # Edit
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3000
