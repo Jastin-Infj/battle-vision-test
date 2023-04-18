@@ -117,22 +117,17 @@ jobs:
     -
       name: docker-compose build OK
       run: |
-        docker-compose build
+        docker-compose -f ${{ vars.DOCKER_COMPOSE_YAL_FILE_AR }} build
 
     -
       name: docker-compose up OK
       run: |
-        docker-compose up -d
+        docker-compose -f ${{ vars.DOCKER_COMPOSE_YAL_FILE_AR }} up -d
 
     -
       name: docker container remove all OK
       run: |
         docker rm -f `docker ps -a -q`
-    
-    -
-      name: create Artifact Registry package OK
-      run: |
-        docker tag ${{ vars.DOCKER_PUSH_BASE_NAME }}:${{ vars.DOCKER_PUSH_BASE_TAG }} ${{ steps.get_docker_image_tag.outputs.ARTIFACT_REPO_URL }}
     
     -
       name: docker images ls OK
