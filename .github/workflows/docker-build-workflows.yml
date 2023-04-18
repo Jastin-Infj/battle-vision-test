@@ -76,7 +76,7 @@ jobs:
     -
       name: docker-compose build OK
       run: |
-        docker-compose -f ${{ vars.DOCKER_COMPOSE_YRL_FILE_GCR }} build
+        docker-compose -f ${{ vars.DOCKER_COMPOSE_YAL_FILE_GCR }} build
     
     -
       name: docker images ls OK
