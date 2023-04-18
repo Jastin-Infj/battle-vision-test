@@ -29,6 +29,17 @@ jobs:
         password: ${{ secrets.REACT_APP }}
 
     - 
+      name: Cache Docker Build Cache OK
+      uses: actions/cache@v3
+      with:
+        path: /tmp/.buildx-cache
+        key: docker-build-cache-${{ github.ref }}-${{ github.sha }}
+        restore-keys: |
+          docker-build-cache-${{ github.ref }}
+          docker-build-cache-${{ github.ref }}-${{ github.sha }}
+          docker-build-cache
+
+    - 
       name: yarn intall Using React OK
       run: |
         yarn install
@@ -77,19 +88,24 @@ jobs:
       name: docker-compose build OK
       run: |
         docker-compose build
-        
+    
+    -
+      name: create githubAction Package OK
+      run: |
+        docker tag ${{ vars.DOCKER_PUSH_BASE_NAME }}:${{ vars.DOCKER_PUSH_BASE_TAG }} ${{ steps.get_docker_image_tag.outputs.DOCKER_PUSH_URL }}
+    
     -
       name: docker images ls OK
       run: |
         docker images
 
     -
-      name: docker-compose up test
+      name: docker-compose up OK
       run: |
         docker-compose up -d
 
     -
-      name: docker container remove all test
+      name: docker container remove all OK
       run: |
         docker rm -f `docker ps -a -q`
 

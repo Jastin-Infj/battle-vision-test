@@ -118,6 +118,16 @@ jobs:
       name: docker-compose build OK
       run: |
         docker-compose build
+
+    -
+      name: docker-compose up OK
+      run: |
+        docker-compose up -d
+
+    -
+      name: docker container remove all OK
+      run: |
+        docker rm -f `docker ps -a -q`
     
     -
       name: create Artifact Registry package OK
