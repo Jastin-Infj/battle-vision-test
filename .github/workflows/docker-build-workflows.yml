@@ -32,11 +32,6 @@ jobs:
       name: yarn intall Using React OK
       run: |
         yarn install
-    
-    -
-      name: yarn reinstall test 
-      run: |
-        yarn
 
     - 
       name: Ubuntu file ls OK
