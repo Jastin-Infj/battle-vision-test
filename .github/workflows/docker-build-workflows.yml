@@ -76,12 +76,7 @@ jobs:
     -
       name: docker-compose build OK
       run: |
-        docker-compose build
-    
-    -
-      name: create githubAction Package OK
-      run: |
-        docker tag ${{ vars.DOCKER_PUSH_BASE_NAME }}:${{ vars.DOCKER_PUSH_BASE_TAG }} ${{ steps.get_docker_image_tag.outputs.DOCKER_PUSH_URL }}
+        docker-compose.exe -f ${{ vars.DOCKER_COMPOSE_YRL_FILE_GCR }} build
     
     -
       name: docker images ls OK
@@ -91,7 +86,7 @@ jobs:
     -
       name: docker-compose up OK
       run: |
-        docker-compose up -d
+        docker-compose.exe -f ${{ vars.DOCKER_COMPOSE_YAL_FILE_GCR }}  up -d
 
     -
       name: docker container remove all OK
