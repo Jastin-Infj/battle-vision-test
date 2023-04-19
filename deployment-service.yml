@@ -11,6 +11,7 @@ spec:
     metadata:
       labels:
         app: react-app
+        gcp-auth-skip-secret: "true"
     spec:
       containers:
       - name: react-app
