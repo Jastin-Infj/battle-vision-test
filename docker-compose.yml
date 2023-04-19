@@ -7,5 +7,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - .:/usr/src/app
+      - ./build:/usr/share/nginx/html
+      - ./nginx:/etc/nginx/conf.d/
     ports:
       - 3000:3000
