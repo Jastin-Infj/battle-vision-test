@@ -14,6 +14,14 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 COPY yarn.lock ./
 
+COPY docker-entrypoint.sh ./
+
+# 実行する場合 +x が必要になる
+RUN mv ./docker-entrypoint.sh /usr/local/bin; \
+    chmod +x /usr/local/bin/docker-entrypoint.sh;
+
+ENTRYPOINT [ "docker-entrypoint.sh"]
+
 RUN yarn install
 
 # node_modules and ソースコード直下
