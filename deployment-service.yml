@@ -1,30 +1,37 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: react-app
+  annotations:
+    deployment.kubernetes.io/revision: "1"
+  name: app
+  namespace: default
 spec:
-  replicas: 1
   selector:
     matchLabels:
-      app: react-app
+      name: app
+  replicas: 1
   template:
-    metadata:
-      labels:
-        app: react-app
-        gcp-auth-skip-secret: "true"
     spec:
       containers:
       - name: react-app
         image: us-central1-docker.pkg.dev/app-battle-vision/app-battle-vision-ar/react-app:latest   # Edit
-        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 3000
-        command: ["yarn","start"]
+        imagePullPolicy: IfNotPresent
+      imagePullSecrets:
+        - name: gcr-secret
+    metadata:
+      labels:
+        name: app
+      namespace: default
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: react-app
+  creationTimestamp: "2023-04-20T04:52:06Z"
+  name: gcr-secret
+  namespace: default
+  uid: 69ad2b79-51c0-4440-869a-50085d4854ec
 spec:
   type: NodePort
   selector:
