@@ -1,0 +1,11 @@
+version: "3"
+services:
+  python:
+    image: python
+    container_name: python
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+    - ./src:/usr/src/app/app
+    command: sh -c "python hello.py"
