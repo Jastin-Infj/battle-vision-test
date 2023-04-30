@@ -1,12 +1,17 @@
 version: "3"
 services:
   web:
-    image: service
+    image: web
+    container_name: web
     build:
       context: .
       dockerfile: Dockerfile
     volumes:
       - .:/usr/src/app
-    command: ["yarn","start"]
+      - front_node_modules:/usr/src/app/node_modules
     ports:
       - "3000:3000"
+    command: sh -c "yarn start"
+
+volumes:
+  front_node_modules:
