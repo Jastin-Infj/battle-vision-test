@@ -7,4 +7,7 @@ services:
       context: .
       dockerfile: Dockerfile
     volumes:
-    - ./src:/usr/src/app/app
+    - ./django_test:/usr/src/app/app
+    command: sh -c "python3 manage.py runserver 0.0.0.0:8000"
+    ports:
+    - "8080:8000"

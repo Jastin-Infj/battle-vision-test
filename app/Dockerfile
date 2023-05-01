@@ -5,10 +5,9 @@ FROM python:${PYTHON_VERSION}-slim-buster
 RUN apt-get update
 
 ENV PYTHONUNBUFFERED 1
-RUN mkdir /code
-WORKDIR /code
+WORKDIR /usr/src/app/app
 
-COPY requirements.txt /code
+COPY requirements.txt ./
 RUN pip install --upgrade pip
 
 # MariaDB
@@ -16,4 +15,4 @@ RUN apt-get update \
  && apt-get -y install gcc default-libmysqlclient-dev;
 
 RUN pip install -r requirements.txt
-COPY . /code/
+COPY . ./
