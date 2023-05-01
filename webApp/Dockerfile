@@ -1,10 +1,11 @@
-ARG NODE_VERSION=18.15.0
+ARG NODE_VERSION=20.0.0
+ARG ALPINE_VERSION=3.17
 
-FROM node:${NODE_VERSION}
+FROM node:${NODE_VERSION}-alpine${ALPINE_VERSION}
 
-RUN apt-get update
+RUN apk update
 
-WORKDIR /usr/src/app/web
+WORKDIR /usr/src/app/webApp
 
 COPY package*.json ./
 RUN chmod +x package*.json
@@ -14,8 +15,6 @@ RUN chmod +x yarn*.lock
 
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh;
-
-ENV PATH ./node_modules/.bin:$PATH
 
 RUN yarn -y install
 
