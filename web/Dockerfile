@@ -4,6 +4,9 @@ ARG ALPINE_VERSION=3.17
 FROM nginx:${NGINX_VERSION}-alpine${ALPINE_VERSION}
 
 # React -> yarn build -> generate "build" directory
+WORKDIR /usr/src/app/web
+
+RUN cd .. && cd webApp && mv ./build /usr/src/app/web
 COPY ./build /usr/share/nginx/html
 
 COPY docker-entrypoint.sh /usr/local/bin

@@ -1,7 +1,7 @@
 *.dockerignore
 README*.md
 
-*Dockerfile
+Dockerfile
 */node_modules
 *npm-debug.log
 */.github
