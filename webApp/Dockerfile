@@ -1,8 +1,9 @@
-ARG NODE_VERSION=18.15.0
+ARG NODE_VERSION=20.0.0
+ARG ALPINE_VERSION=3.17
 
-FROM node:${NODE_VERSION}
+FROM node:${NODE_VERSION}-alpine${ALPINE_VERSION}
 
-RUN apt-get update
+RUN apk update
 
 WORKDIR /usr/src/app/web
 

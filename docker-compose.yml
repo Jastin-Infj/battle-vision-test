@@ -1,0 +1,17 @@
+version: "3"
+services:
+  web-react:
+    image: web-react
+    container_name: web-react
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./webApp:/usr/src/app/webApp
+      - front_node_modules:/usr/src/app/webApp/node_modules
+    ports:
+      - "3000:3000"
+    command: sh -c "cd webApp && yarn start"
+
+volumes:
+  front_node_modules:
