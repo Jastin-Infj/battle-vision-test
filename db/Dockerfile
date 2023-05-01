@@ -1,2 +1,4 @@
 ARG MARIADB_VERSION=10.11.2
 FROM mariadb:${MARIADB_VERSION}
+
+RUN mkdir /data
